@@ -6,8 +6,10 @@
 
 package ventanas;
 
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import web.funciones;
 
 /**
  *
@@ -33,16 +35,14 @@ private static String usuario;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         btnloginaceptar = new javax.swing.JButton();
         txtloginusuario = new javax.swing.JTextField();
         txtloginpass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btnloginaceptar1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-
-        jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingresar Al Sistema");
@@ -61,6 +61,9 @@ private static String usuario;
             }
         });
         txtloginusuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtloginusuarioKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtloginusuarioKeyReleased(evt);
             }
@@ -68,6 +71,9 @@ private static String usuario;
 
         txtloginpass.setFont(new java.awt.Font("Arial Narrow", 0, 16)); // NOI18N
         txtloginpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtloginpassKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtloginpassKeyReleased(evt);
             }
@@ -79,15 +85,26 @@ private static String usuario;
         jLabel2.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         jLabel2.setText("Pass:");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Ingresar.png"))); // NOI18N
+        btnloginaceptar1.setText("Cancelar");
+        btnloginaceptar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnloginaceptar1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ingresarSistema.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel3)
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -97,22 +114,21 @@ private static String usuario;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtloginusuario)
                             .addComponent(txtloginpass, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(67, 67, 67))
+                        .addGap(83, 83, 83))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(99, 99, 99))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnloginaceptar)
-                        .addGap(27, 27, 27))))
+                        .addComponent(btnloginaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnloginaceptar1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
@@ -122,20 +138,22 @@ private static String usuario;
                         .addGap(38, 38, 38)
                         .addComponent(txtloginpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtloginusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnloginaceptar)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnloginaceptar1)
+                    .addComponent(btnloginaceptar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginaceptarActionPerformed
-    entrar();
+        entrar();
     }//GEN-LAST:event_btnloginaceptarActionPerformed
 
     public String valorusuario(){
-    return privilegios;
+        return privilegios;
     }
     
     public String usuario(){
@@ -147,18 +165,30 @@ private static String usuario;
     }//GEN-LAST:event_txtloginusuarioActionPerformed
 
     private void txtloginpassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtloginpassKeyReleased
-        int key = evt.getKeyCode();
-        if (key == KeyEvent.VK_ENTER) {
-           entrar();
-        }
+
     }//GEN-LAST:event_txtloginpassKeyReleased
 
     private void txtloginusuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtloginusuarioKeyReleased
+
+    }//GEN-LAST:event_txtloginusuarioKeyReleased
+
+    private void btnloginaceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginaceptar1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnloginaceptar1ActionPerformed
+
+    private void txtloginusuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtloginusuarioKeyPressed
         int key = evt.getKeyCode();
         if (key == KeyEvent.VK_ENTER) {
            entrar();
         }
-    }//GEN-LAST:event_txtloginusuarioKeyReleased
+    }//GEN-LAST:event_txtloginusuarioKeyPressed
+
+    private void txtloginpassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtloginpassKeyPressed
+        int key = evt.getKeyCode();
+        if (key == KeyEvent.VK_ENTER) {
+           entrar();
+        }
+    }//GEN-LAST:event_txtloginpassKeyPressed
 
     /**
      * @param args the command line arguments
@@ -196,34 +226,44 @@ private static String usuario;
     }
     
     public void entrar(){
-//        JOptionPane.showMessageDialog(null, "ASDF");
-//        int largologin=txtloginusuario.getText().length();
-//        int largopass=txtloginpass.getText().length();
-//        JOptionPane.showMessageDialog(null, "User: "+largologin+"\nPass: "+largopass);
-//        if( txtloginpass.getText().length() == 0 || txtloginusuario.getText().length() == 0){
-//                JOptionPane.showMessageDialog(null, "Usuario y/o Pass Vacios", "Error", JOptionPane.ERROR_MESSAGE);
-//            }else{
-//                String loginusuario = txtloginusuario.getText();
-//                String loginpass = txtloginpass.getText();
-//                // int loginusuario = Integer.parseInt(txtloginusuario.getText());
-//                //int loginpass = Integer.parseInt(txtloginpass.getText());
-//                 privilegios = new funcioneslogin().buscarnombre(loginusuario, loginpass);
-//                if(new funcioneslogin().compararlogin(loginusuario,loginpass)==true){
+        String user = txtloginusuario.getText().toLowerCase();
+        String pass = txtloginpass.getText().toLowerCase();
+        int largologin=txtloginusuario.getText().length();
+        int largopass=txtloginpass.getText().length();
+        //JOptionPane.showMessageDialog(null, "USUARIO: "+user+" LARGO: "+largologin+"\nPASS: "+pass+" LARGO: "+largopass);        
+        if( txtloginpass.getText().length() == 0 || txtloginusuario.getText().length() == 0){
+                JOptionPane.showMessageDialog(null, "Usuario y/o Pass Vacios", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                if(new funciones().compararlogin(user,pass)==true){
+                    System.out.println("SI ENTRA");
+                    Menu m = new ventanas.Menu();
+                    m.setLocationRelativeTo(null);
+                    m.setVisible(true);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null,"Usuario y/o Pass Incorrecto", "Error",JOptionPane.ERROR_MESSAGE);
+                    txtloginpass.setText("");
+                    txtloginusuario.setText("");
+                    txtloginusuario.requestFocus();
+                }
+                //privilegios = new funciones().obtenerPrivilegio(user, pass);
+                //JOptionPane.showMessageDialog(null, "PRIVILEGIOS: "+privilegios);
+//                if(new funciones().compararlogin(loginusuario,loginpass)==true){
 //                            this.dispose();
-//                            usuario= loginusuario;
-//                            new Menumantenimiento().setVisible(true);
+//                            usuario = loginusuario;
+//                            //new Menumantenimiento().setVisible(true);
 //                }else{
 //                   JOptionPane.showMessageDialog(null,"Usuario y/o Pass Incorrecto", "Error",JOptionPane.ERROR_MESSAGE);
 //                    txtloginpass.setText("");
 //                    txtloginusuario.setText("");
 //                    txtloginusuario.requestFocus();
 //                }
-//            }
+            }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnloginaceptar;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton btnloginaceptar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

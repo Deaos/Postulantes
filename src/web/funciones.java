@@ -29,6 +29,45 @@ import javax.swing.table.DefaultTableModel;
  */
 public class funciones {
     
+    public boolean compararlogin(String loginusuario, String loginpass){
+        String sql = "SELECT usuario FROM usuario WHERE usuario='"+loginusuario+"' and pass=SHA2('"+loginpass+"',224);";
+        //System.out.println(sql);
+        Conexion conn = new Conexion();
+        boolean existe = false;
+        try{
+                PreparedStatement st = conn.prepararSQL(sql);
+                ResultSet rs = st.executeQuery();
+                if(rs.next()){
+                    existe = true;
+                }
+        }catch(SQLException ex){
+        }finally{
+                conn.desconectar();
+        }
+        System.out.println(existe);
+        return existe;
+    }
+    
+    
+    public String obtenerPrivilegio(String loginusuario, String loginpass){
+        String sql = "SELECT privilegio FROM usuario WHERE usuario='"+loginusuario+"' and pass=SHA2('"+loginpass+"',224);";
+        Conexion conn = new Conexion();
+        String privilegios= "";
+        try{
+
+             PreparedStatement st = conn.prepararSQL(sql);
+                 ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                privilegios = rs.getString(1);
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        conn.desconectar();
+        }
+        return privilegios;
+    }
+    
+    
     public static void mostrarDatos(String sql) {
         try {
             Conexion conn = new Conexion();
